@@ -1,0 +1,87 @@
+// max consecutive 1's
+ int arr[]={1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1};
+        int M=2;
+
+        int j=-1;
+        int count=0;
+        int len=0;
+        for (int i = 0; i <arr.length ; i++) {
+
+            if(arr[i]==0){
+                count++;
+        }
+            while (count>M){
+                j++;
+                if(arr[j]==0) count--;
+            }
+            int ans=i-j;
+            if(ans>len){
+                len=ans;
+            }
+
+
+        }
+
+        System.out.println(len);
+
+
+//jump game
+package MUSTDOQUESTION.Da4;
+
+public class JUMPGAME {
+    public static void main(String[] args) {
+
+        int arr[]={1, 2, 0, 3, 0, 0};
+        int jumpo=0;
+        int current=1;
+        int farthest=0;
+
+        for (int i = 1; i <arr.length ; i++) {
+
+//            if(arr[i]+1>arr.length){
+//                break;
+//            }
+            farthest=Math.max(farthest,arr[i]+1);
+            if(i>farthest){
+                System.out.println("no way to reach the end");
+            }
+
+            if(i==current){
+                current=farthest;
+                jumpo++;
+            }
+        }
+        System.out.println(jumpo);
+    }
+}
+// buy and sell
+class Solution {
+    public static int stockBuyAndSell(int n, int[] arr) {
+        int profit=0;
+            for(int i=1;i<arr.length;i++){
+            if(arr[i]>arr[i-1]){
+                profit+=arr[i]-arr[i-1];
+            }
+        }
+        return (profit);
+    
+    }
+}
+
+buy and sell 1
+public class BuyandSellindex {
+    public static void main(String[] args) {
+        int arr[]= {100, 180, 260, 310, 40, 535, 695};
+
+        int minsofar=Integer.MAX_VALUE;
+        int max=0;
+
+        for (int i = 0; i <arr.length ; i++) {
+            minsofar=Math.min(minsofar,arr[i]);
+            int profit=arr[i]-minsofar;
+            max=Math.max(profit,max);
+        }
+        System.out.println(max);
+
+    }
+}

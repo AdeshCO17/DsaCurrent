@@ -1,0 +1,52 @@
+//longest subsequece number
+ public static int LSN(int arr[]){
+
+        HashSet<Integer>hashSet=new HashSet<>();
+        for (int i = 0; i <arr.length ; i++) {
+
+            hashSet.add(arr[i]);
+        }
+        int count=0;
+        int l=0;
+        for (int i = 0; i <arr.length ; i++) {
+            int n=arr[i];
+
+            if(!hashSet.contains(n-1)){
+                n=n+1;
+                count=1;
+                while (hashSet.contains(n)){
+                    n=n+1;
+                    count++;
+                }
+
+            }
+            l=Math.max(l,count);
+
+        }
+
+        return l;
+
+    }
+//Maximum value of difference of a pair of elements and their Index
+class Solution {
+    static int maxValue(int[] array, int N) {
+             int max1 = Integer.MIN_VALUE;
+        int min1 = Integer.MAX_VALUE;
+        int max2 = Integer.MIN_VALUE;
+        int min2 = Integer.MAX_VALUE;
+ 
+        for (int i = 0; i < array.length; i++)
+        {
+ 
+            // Updating max and min variables
+            // as described in algorithm.
+            max1 = Math.max(max1, array[i] + i);
+            min1 = Math.min(min1, array[i] + i);
+            max2 = Math.max(max2, array[i] - i);
+            min2 = Math.min(min2, array[i] - i);
+        }
+ 
+        // Calculating maximum absolute difference.
+        return Math.max(max1 - min1, max2 - min2);
+    }
+};

@@ -1,0 +1,42 @@
+
+//larger factorial
+class CustomLinkedList {
+    List<Integer> digits;
+
+    public CustomLinkedList() {
+        digits = new ArrayList<>();
+    }
+
+    public CustomLinkedList(int num) {
+        digits = new ArrayList<>();
+        digits.add(num);
+    }
+
+    public void multiply(int num) {
+        int carry = 0;
+        for (int i = digits.size() - 1; i >= 0; i--) {
+            int product = digits.get(i) * num + carry;
+            digits.set(i, product % 10);
+            carry = product / 10;
+        }
+        while (carry > 0) {
+            digits.add(0, carry % 10);
+            carry /= 10;
+        }
+    }
+
+    public List<Integer> factorial(int n) {
+        for (int i = 2; i <= n; i++) {
+            multiply(i);
+        }
+        return digits;
+    }
+}
+
+class Solution {
+    static ArrayList<Integer> factorial(int N) {
+        CustomLinkedList c = new CustomLinkedList(1);
+        List<Integer> ans = c.factorial(N);
+        return new ArrayList<>(ans);
+    }
+}

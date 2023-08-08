@@ -1,0 +1,71 @@
+
+QLongest palindrom substring
+
+class Solution {
+    public String longestPalindrome(String s) {
+
+      int maxlen=0;
+      String ans="";
+        int n=s.length();
+        int dp[][]=new int[n][n];
+        for(int diff=0;diff<n;diff++){
+            for(int i=0,j=i+diff;j<n;i++,j++){
+                if(i==j){
+                    dp[i][j]=1;
+                }
+                else if(diff==1){
+                    dp[i][j]=(s.charAt(i)==s.charAt(j))?2:0;
+                }
+                else{
+
+                    if((s.charAt(i)==s.charAt(j))  && (dp[i+1][j-1])!=0){
+                        dp[i][j]=dp[i+1][j-1]+2;
+
+                    }
+                }
+                if(dp[i][j]!=0){
+                    if(j-i+1> maxlen){
+                        maxlen=j-i+1;
+                        ans=s.substring(i,i+maxlen);
+                    }
+                }
+
+            }
+        }
+        return ans;
+        
+    }
+}
+
+
+Q String to integer (atoi)
+
+class Solution {
+    public int myAtoi(String s) {
+
+        if(s==null) return 0;
+          s=s.trim();
+        if(s.length()==0) return 0;
+      
+        int sign=+1;
+        long ans=0;
+       int max=Integer.MAX_VALUE;
+       int min=Integer.MIN_VALUE;
+
+        if(s.charAt(0) =='-') sign=-1;
+        int i=(s.charAt(0)=='-' || s.charAt(0)=='+')?1:0;
+        while(i<s.length()){
+
+            if(s.charAt(i)==' ' || !Character.isDigit(s.charAt(i))){
+                break;
+            }
+            ans=ans*10+s.charAt(i)-'0';
+            if(sign==-1 && -1*ans<min) return min;
+            if(sign==1 && ans>max) return max;
+ i++;
+        }
+        return (int)(sign*ans);
+
+        
+    }
+}

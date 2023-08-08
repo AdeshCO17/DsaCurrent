@@ -1,0 +1,104 @@
+// trailzero
+
+
+package CompanyPreparations.Practicing;
+
+public class prac5 {
+    public static void main(String[] args) {
+
+
+        System.out.println(Trailzero(10));
+    }
+    public static long Trailzero(int n){
+
+        if(n<0){
+            return -1;
+
+        }
+        int count=0;
+        for (int i = 5; n/i>=1 ; i*=5) {
+            count+=n/i;
+        }
+        return count;
+
+    }
+}
+
+
+/nth natural number
+
+class Solution {
+    long findNth(long N)
+    {
+        int count=0;
+        for(int i=1;i>0;i++){
+            if(isDigit9(i)==false){
+                count++;
+                if(count==N){
+                    count=i;
+                    break;
+                }
+            }
+        }
+        return count;
+       
+    }
+    
+    static boolean isDigit9(int i){
+        
+        while(i>0){              // 999 digit by digit check
+            int rem=i%10;
+            if(rem==9){
+                return true;
+            }
+            i/=10;
+        }
+        return false;
+    }
+} 
+
+
+
+//find the smallest positiver integer value that cannot be represent as sum of any subset
+
+
+class Solution { 
+    long smallestpositive(long[] array, int n){ 
+       
+       long res=1;
+       Arrays.sort(array);
+       
+       for(int i=0;i<array.length;i++){
+           
+           if(array[i]>res){
+               return res;
+           }else{
+               res+=array[i];
+           }
+       }
+       return res;
+    }
+} 
+
+
+#rotatearray
+public class rotate2array {
+    public static void main(String[] args) {
+
+        int arr[]={1,2,3,4,5,6,7};
+        int d=2;
+        for (int i = 0; i <d ; i++) {
+            Rotate(arr);
+        }
+
+        Arrays.stream(arr).forEach(e->{System.out.println(e);});
+    }
+    public static void Rotate(int arr[]){
+        int temp=arr[0];
+        for (int i = 0; i <arr.length && i+1<arr.length ; i++) {
+            arr[i]=arr[i+1];
+        }
+        arr[arr.length-1]=temp;
+
+    }
+}

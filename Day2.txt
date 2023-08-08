@@ -1,0 +1,92 @@
+Q1> 4Sum problem
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (nums == null || nums.length < 4) return res;
+        
+        Arrays.sort(nums);
+        int n = nums.length;
+        
+        for (int i = 0; i < n - 3; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) continue; // Skip duplicates
+            
+            for (int j = i + 1; j < n - 2; j++) {
+                if (j > i + 1 && nums[j] == nums[j - 1]) continue; // Skip duplicates
+                
+                int left = j + 1;
+                int right = n - 1;
+                
+                long target2 = (long) target - nums[i] - nums[j];
+                
+                while (left < right) {
+                    long sum = (long) nums[left] + nums[right];
+                    
+                    if (sum < target2) {
+                        left++;
+                    } else if (sum > target2) {
+                        right--;
+                    } else {
+                        res.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));
+                        
+                        while (left < right && nums[left] == nums[left + 1]) left++; // Skip duplicates
+                        while (left < right && nums[right] == nums[right - 1]) right--; // Skip duplicates
+                        
+                        left++;
+                        right--;
+                    }
+                }
+            }
+        }
+        
+        return res;
+    }
+}
+
+
+Q2 plusone problem
+
+
+class Solution {
+    public int[] plusOne(int[] digits) {
+
+      digits[digits.length-1]++;
+      for(int i=digits.length-1;i>=0;i--){
+        if(digits[i]==10 && i!=0){   //i =1,2,3,4,5 but not 0
+        digits[i]=0;
+        digits[i-1]+=1;
+        }
+        if(digits[i]==10){  // means only 9 in an array
+        int copy[]=new int[digits.length+1] ; // if len of arr is 1 then it become 2
+        copy[i]=1;
+       
+        return copy;
+
+        }
+      
+      }
+          return digits;
+    }
+}
+
+
+Q container with most water
+
+class Solution {
+    public int maxArea(int[] height) {
+
+        int left=0,right=height.length-1;
+        int area=0;
+        int result=0;
+        while(left<right){
+            area=(right-left)*Math.min(height[left],height[right]);
+            result=Math.max(result,area);
+            if(height[left]<height[right]){
+                left++;
+            }else{
+                right--;
+            }
+        }
+        return result;
+        
+    }
+}

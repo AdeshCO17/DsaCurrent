@@ -1,0 +1,46 @@
+package MUSTDOQUESTION.Day8;
+
+import java.util.Arrays;
+
+// forestcut
+public class ForestUsingBs {
+    public static void main(String[] args) {
+
+        int arr[]={1,2,1,2};
+        int k=2;
+        Arrays.sort(arr);
+        System.out.println(collected(arr,k));
+
+    }
+    public  static int cut(int m,int arr[]){
+
+        int sum=0;
+        for (int i = arr.length-1; i >=0 ; i--) {
+            if((arr[i]-m)<=0) break;
+            sum+=arr[i]-m;
+        }
+        return sum;
+
+    }
+    public static int collected(int arr[],int k){
+        int n=arr.length;
+        int low=0;
+        int high=arr[arr.length-1];
+        while (low<=high){
+            int mid=(low+high)/2;
+
+            int collect=cut(mid,arr);
+
+            if(collect==k){
+                return mid;
+            }
+            if(collect<k){
+                low=mid+1;
+            }else {
+                high=mid-1;
+            }
+        }
+        return -1;
+
+    }
+}

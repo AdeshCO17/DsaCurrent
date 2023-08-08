@@ -1,0 +1,71 @@
+//maxsub circular array
+class Solution{
+
+
+    static int circularSubarraySum(int arr[], int n) {
+        
+        int maxsofar=arr[0];
+        int minsofar=arr[0];
+        int currmax=arr[0];
+        int currmin=arr[0];
+        
+        int sum=arr[0];
+        
+        for(int i=1;i<arr.length;i++){
+            
+            sum+=arr[i];
+            
+            currmax=Math.max(arr[i],currmax+arr[i]);
+            maxsofar=Math.max(maxsofar,currmax);
+            
+            currmin=Math.min(arr[i],currmin+arr[i]);
+            minsofar=Math.min(currmin,minsofar);
+            
+       
+            
+        }
+         if (minsofar == sum) {
+      return maxsofar;
+    }
+        
+        return Math.max(maxsofar,sum-minsofar);
+        
+        
+    }
+    
+}
+
+//3 sum closet
+
+Q3 sum CLOSET
+class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        Arrays.sort(nums);
+       int ans=0;
+       int diff=Integer.MAX_VALUE;
+        for(int i=0;i<nums.length;i++){      // fixing the first element
+
+        int first =nums[i];
+        int start=i+1;
+        int end=nums.length-1;
+ 
+        
+        while(start<end){
+            if(first+nums[start]+nums[end]==target) return target;
+            if(Math.abs(first+nums[start]+nums[end]-target)<diff){
+                diff=Math.abs(first+nums[start]+nums[end]-target);
+                ans=first+nums[start]+nums[end];
+            }
+            if(first+nums[start]+nums[end]>target){
+                end--;
+            }else{
+                start++;
+            }
+        }
+
+
+        }
+        return ans;
+        
+    }
+}

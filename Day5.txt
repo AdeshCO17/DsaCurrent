@@ -1,0 +1,98 @@
+Q roman to numbers
+
+public int romanToInt(String s) {
+    
+    int answer = 0, number = 0, prev = 0;
+
+    for (int j = s.length() - 1; j >= 0; j--) {
+        switch (s.charAt(j)) {
+            case 'M' -> number = 1000;
+            case 'D' -> number = 500;
+            case 'C' -> number = 100;
+            case 'L' -> number = 50;
+            case 'X' -> number = 10;
+            case 'V' -> number = 5;
+            case 'I' -> number = 1;
+        }
+        if (number < prev) {
+            answer -= number;
+        }
+        else {
+            answer += number;
+        }
+        prev = number;
+    }
+    return answer;
+}
+
+QLongest commanprefix
+
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        
+            Arrays.sort(strs);
+
+            String s1=strs[0];
+            String s2=strs[strs.length-1];
+            int idx=0;
+
+            while(idx<s1.length() && idx<s2.length()){
+                if(s1.charAt(idx)==s2.charAt(idx)){
+                    idx++;
+                }else{
+                    break;
+                }
+            }
+
+            return s1.substring(0,idx);
+
+    }
+}
+
+Q valid parenthese
+
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> stack=new Stack<>();
+       boolean isbalance=true;
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='{' || s.charAt(i)=='(' || s.charAt(i)=='['){
+                stack.push(s.charAt(i));
+                continue;
+            }
+            if(stack.isEmpty()){
+             isbalance=false;
+            break;
+            }
+
+            if(s.charAt(i)==')'){
+                if(stack.peek()=='('){
+                    stack.pop();
+                }else{
+                    isbalance=false;
+                    break;
+                }
+            }
+             if(s.charAt(i)=='}'){
+                if(stack.peek()=='{'){
+                    stack.pop();
+                }else{
+                    isbalance=false;
+                    break;
+                }
+            }
+             if(s.charAt(i)==']'){
+                if(stack.peek()=='['){
+                    stack.pop();
+                }else{
+                    isbalance=false;
+                    break;
+                }
+            }
+        }
+        if(!stack.isEmpty()){
+            isbalance=false;
+        }
+        return isbalance;
+    }
+}
